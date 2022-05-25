@@ -64,10 +64,66 @@ async def close_app(message: types.Message):
                          reply_markup=types.ReplyKeyboardRemove())
 
 
-@dp.message_handler(Text(contains="купить прокси"))
+@dp.message_handler(Text(contains="код с почты"))
 async def close_app(message: types.Message):
-    await message.answer(f"{message.from_user.first_name} задай ему - @Mountain_man_proxy любой вопрос по прокси\n"
-                         f"ГЕО: 🇷🇺 🇰🇿 🇵🇱 🇺🇦 🇦🇿",
+    await message.answer(f"@SocroboticStoreBot - здесь ты сможешь получить код с почты в разделе <b>Услуги</>",
+                         reply_markup=types.ReplyKeyboardRemove())
+
+
+@dp.message_handler(Text(equals=["купить софт", "софт"]))
+async def close_app(message: types.Message):
+    await message.answer(f"{message.from_user.first_name} задай ему - @pharaon93rus любой вопрос по софту",
+                         reply_markup=types.ReplyKeyboardRemove())
+
+
+@dp.message_handler(Text(equals=["промокод", "скидка", "промик"]))
+async def close_app(message: types.Message):
+    await message.answer(
+        f"{message.from_user.first_name} Вы можете задать свой вопрос в нашу техподдержку @SocroboticHelp_bot\n\n"
+        f"И Вам выдадут персональный промокод",
+        reply_markup=types.ReplyKeyboardRemove())
+
+
+@dp.message_handler(Text(contains="бновлени"))
+async def close_app(message: types.Message):
+    await message.answer(f"Рекомендую подписаться на наш канал по обновам - https://t.me/fb_update\n\n"
+                         f"а так же можно скачивать с облака - https://cloud.mail.ru/public/hCTc/SFbcpLyLG",
+                         reply_markup=types.ReplyKeyboardRemove())
+
+
+@dp.message_handler(Text(contains="нструкци"))
+async def close_app(message: types.Message):
+    await message.answer(f"Посмотреть все инструкции можно здесь https://t.me/socrobotic_manual\n\n"
+                         f"а так же можно скачивать с облака текстовый мануал - https://cloud.mail.ru/public/ApFm/NWn5oE1Dd",
+                         reply_markup=types.ReplyKeyboardRemove())
+
+
+@dp.message_handler(Text(contains="мануал"))
+async def close_app(message: types.Message):
+    await message.answer(f"Посмотреть все инструкции можно здесь https://t.me/socrobotic_manual\n\n"
+                         f"а так же можно скачивать с облака текстовый мануал - https://cloud.mail.ru/public/ApFm/NWn5oE1Dd",
+                         reply_markup=types.ReplyKeyboardRemove())
+
+
+@dp.message_handler(Text(contains="платёж"))
+async def close_app(message: types.Message):
+    await message.answer(f"Вы можете использовать следующие способы оплаты: \n\n"
+                         f"УКР карта\n"
+                         f"Монобанк\n"
+                         f"5375 4141 0377 6216 Oleksandr Gerko\n\n"
+                         f"Web Money\n\n"
+                         f"Z158268821498\n\n"
+                         f"Qiwi\n\n"
+                         f"+79048489718\n"
+                         f"+79676741496\n\n"
+                         f"Capitalist\n\n"
+                         f"U11140306\n"
+                         f"E11140308\n\n"
+                         f"USDT(TRC20): TAKzHXmmLxaYnjUfQLLykUiUWcPc8tRCJa\n"
+                         f"BTC: 15BvSUL5fCSfKaio8fxLPTRZe4vhWM2sey\n"
+                         f"Ethereum: 0x83832ed12488cb8b21ce9342d792dd5ecd438e6a\n\n"
+                         f"P.S. После перевода отпиши саппорту - @SocroboticHelp_bot\n"
+                         f"А лучше сначала напиши саппорту, первый свободный ответит и ты сможешь оплатить свой заказ \n",
                          reply_markup=types.ReplyKeyboardRemove())
 
 
