@@ -1,3 +1,5 @@
+import asyncio
+from currency_converter import CurrencyConverter
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
@@ -12,25 +14,76 @@ token = []
 email = []
 
 
-@dp.message_handler(Text(contains="оддержка"))
+@dp.message_handler(Text(contains="weather"))
 async def close_app(message: types.Message):
-    await message.answer(f"{message.from_user.first_name} Вы можете задать свой вопрос в нашу техподдержку @SocroboticHelp_bot\n\n"
-                         f"или любому из саппортов:\n\n"
-                         f"<b>По вопросам связанным с аккаунтами:</>\n"
-                         f"@eduardnos\n"
-                         f"@mamaevmaksi\n"
-                         f"@viktoriavergi\n\n"
-                         f"<b>По вопросам связанным с софтом:</>\n"
-                         f"@pharaon93rus\n"
-                         f"@clever_ded\n\n"
-                         f"<b>По крайне важным вопросам писать админу:</> - @makarovdenis89",
+    await message.answer(f"Немного позже доделаю, пока в разработке\n",
                          reply_markup=types.ReplyKeyboardRemove())
+
+
+@dp.message_handler(Text(contains="convert_money"))
+async def close_app(message: types.Message):
+    c = CurrencyConverter()
+    result = c.convert(500, 'EUR', 'USD')
+    await message.answer(f"500 Евро = {result} $\n",
+                         reply_markup=types.ReplyKeyboardRemove())
+
+
+@dp.message_handler(
+    Text(equals=['бля', 'хуй', 'хуе', 'хуя', 'пизда', 'залупа', 'пидор', 'пидар', 'ебан', 'ебу', 'хуй', 'сука',
+                 'долбаеб',
+                 'гандон', 'уеба', 'уебо']))
+async def moderator(message: types.Message):
+    msg = await message.answer(f'Уважаемый <b>{message.from_user.full_name}</>\n'
+                               f'В нашем чате запрещено выражаться матом!\n'
+                               f'Выражай свои мысли более-менее культурно!\n'
+                               f'Спасибо!',
+                               reply_markup=types.ReplyKeyboardRemove())
+    await message.delete()
+
+
+@dp.message_handler(Text(equals=["поддержка", "помощь"]))
+async def close_app(message: types.Message):
+    await message.answer(
+        f"{message.from_user.first_name} Вы можете задать свой вопрос в нашу техподдержку @SocroboticHelp_bot\n\n"
+        f"или любому из саппортов:\n\n"
+        f"<b>По вопросам связанным с аккаунтами:</>\n"
+        f"@eduardnos\n"
+        f"@mamaevmaksi\n"
+        f"@viktoriavergi\n\n"
+        f"<b>По вопросам связанным с софтом:</>\n"
+        f"@pharaon93rus\n"
+        f"@clever_ded\n\n"
+        f"<b>По крайне важным вопросам писать админу:</> - @makarovdenis89",
+        reply_markup=types.ReplyKeyboardRemove())
+
 
 @dp.message_handler(Text(contains="купить аккаунты"))
 async def close_app(message: types.Message):
     await message.answer(f"@SocroboticStoreBot - Телеграм-магазин FB аккаунтов\n"
                          f"socrobotic.io - удобный интернет-магазин FB аккаунтов",
                          reply_markup=types.ReplyKeyboardRemove())
+
+
+@dp.message_handler(Text(contains="купить прокси"))
+async def close_app(message: types.Message):
+    await message.answer(f"{message.from_user.first_name} задай ему - @Mountain_man_proxy любой вопрос по прокси\n"
+                         f"ГЕО: 🇷🇺 🇰🇿 🇵🇱 🇺🇦 🇦🇿",
+                         reply_markup=types.ReplyKeyboardRemove())
+
+
+@dp.message_handler(Text(contains="buy_proxy"))
+async def close_app(message: types.Message):
+    await message.answer(f"{message.from_user.first_name} задай ему - @Mountain_man_proxy любой вопрос по прокси\n"
+                         f"ГЕО: 🇷🇺 🇰🇿 🇵🇱 🇺🇦 🇦🇿",
+                         reply_markup=types.ReplyKeyboardRemove())
+
+
+@dp.message_handler(Text(contains="прокси"))
+async def close_app(message: types.Message):
+    await message.answer(f"{message.from_user.first_name} задай ему - @Mountain_man_proxy любой вопрос по прокси\n"
+                         f"ГЕО: 🇷🇺 🇰🇿 🇵🇱 🇺🇦 🇦🇿",
+                         reply_markup=types.ReplyKeyboardRemove())
+
 
 @dp.message_handler(Text(contains="shop_telega"))
 async def close_app(message: types.Message):
@@ -51,7 +104,6 @@ async def close_app(message: types.Message):
                          reply_markup=menu_close)
 
 
-
 @dp.message_handler(Text(contains="Пообщаться с тех поддержкой socrobotic"))
 async def close_app(message: types.Message):
     await message.answer(f"@SocroboticHelp_bot здесь вы можете задать свой вопрос "
@@ -68,21 +120,20 @@ async def close_app(message: types.Message):
                          f"Если хотите продолжить работу с ботом - нажмите на - /start",
                          reply_markup=types.ReplyKeyboardRemove())
 
-
 # Эхо хендлер, куда летят текстовые сообщения без указанного состояния
-@dp.message_handler(state=None)
-async def bot_echo(message: types.Message):
-    await message.reply(f'{message.from_user.first_name}, выбери пожалуйста какую-нибудь '
-                        f'команду из меню! Спасибо \n\n'
-                        f'В ближайшее время я научусь говорить '
-                        f'с тобой на любые тему, ну а пока могу '
-                        f'работать по запланированному сценарию')
+# @dp.message_handler(state=None)
+# async def bot_echo(message: types.Message):
+#     await message.reply(f'{message.from_user.first_name}, выбери пожалуйста какую-нибудь '
+#                         f'команду из меню! Спасибо \n\n'
+#                         f'В ближайшее время я научусь говорить '
+#                         f'с тобой на любые тему, ну а пока могу '
+#                         f'работать по запланированному сценарию')
 
 
 # Эхо хендлер, куда летят ВСЕ сообщения с указанным состоянием
-@dp.message_handler(state="*", content_types=types.ContentTypes.ANY)
-async def bot_echo_all(message: types.Message, state: FSMContext):
-    state = await state.get_state()
-    await message.answer(f"Эхо в состоянии <code>{state}</code>.\n"
-                         f"\nСодержание сообщения:\n"
-                         f"<code>{message}</code>")
+# @dp.message_handler(state="*", content_types=types.ContentTypes.ANY)
+# async def bot_echo_all(message: types.Message, state: FSMContext):
+#     state = await state.get_state()
+#     await message.answer(f"Эхо в состоянии <code>{state}</code>.\n"
+#                          f"\nСодержание сообщения:\n"
+#                          f"<code>{message}</code>")

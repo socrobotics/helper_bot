@@ -1,5 +1,5 @@
 from aiogram import types
-from aiogram.dispatcher.filters.builtin import CommandStart
+from aiogram.dispatcher.filters.builtin import CommandStart, Command
 from aiogram.utils.markdown import hbold
 
 from keyboards.inline.menu import menu_start
@@ -14,3 +14,4 @@ async def bot_start(message: types.Message):
                          f"Если хочешь пообщаться - нажми кнопку <b>Задать вопрос боту помощнику</>\n\n"
                          f"Или выбери другой вариант👇 👇 👇 ",
                          reply_markup=menu_start)
+

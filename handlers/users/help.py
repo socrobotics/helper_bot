@@ -14,6 +14,7 @@ async def bot_help(message: types.Message):
             "/shop_site - Перейти на сайт в магазин FB аккаунтов",
             "/weather - Узнать погоду",
             "/convert_money - Сконвертировать валюту",
+            "/buy_proxy - Купить прокси",
             "/help - Задать вопрос в техподдержку")
     
     await message.answer("\n".join(text),
