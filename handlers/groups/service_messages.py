@@ -1,3 +1,5 @@
+import asyncio
+
 from aiogram import types
 
 from filters import IsGroup
@@ -29,6 +31,9 @@ async def new_member(message: types.Message):
                         f'-спам\n'
                         f'-реклама без согласия администрации\n'
                         f'-порнография = <b>БАН</>\n')
+
+    await asyncio.sleep(25)
+    await message.delete()
 
 
 @dp.message_handler(IsGroup(), content_types=types.ContentTypes.LEFT_CHAT_MEMBER)

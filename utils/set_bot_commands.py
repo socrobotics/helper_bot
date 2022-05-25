@@ -10,6 +10,8 @@ async def set_default_commands(dp):
             types.BotCommand("channels", "Список каналов на подписку"),
             types.BotCommand("create_post", "Предложить пост в канале"),
             types.BotCommand("convert_money", "Сконвертировать валюту"),
+            types.BotCommand("about", "Узнать больше о Нас"),
+            types.BotCommand("show_on_map", "Узнать где мы базируемся"),
             types.BotCommand("help", "Задать вопрос в техподдержку"),
         ]
     )

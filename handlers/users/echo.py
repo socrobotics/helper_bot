@@ -30,8 +30,7 @@ async def close_app(message: types.Message):
 
 @dp.message_handler(
     Text(equals=['бля', 'хуй', 'хуе', 'хуя', 'пизда', 'залупа', 'пидор', 'пидар', 'ебан', 'ебу', 'хуй', 'сука',
-                 'долбаеб',
-                 'гандон', 'уеба', 'уебо']))
+                 'долбаеб', 'гандон', 'уеба', 'уебо']))
 async def moderator(message: types.Message):
     msg = await message.answer(f'Уважаемый <b>{message.from_user.full_name}</>\n'
                                f'В нашем чате запрещено выражаться матом!\n'
