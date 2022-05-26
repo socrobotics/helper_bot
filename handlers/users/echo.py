@@ -1,4 +1,6 @@
 import asyncio
+import random
+
 from currency_converter import CurrencyConverter
 from aiogram import types
 from aiogram.dispatcher import FSMContext
@@ -149,6 +151,21 @@ async def close_app(message: types.Message):
 @dp.message_handler(Text(contains="shop_site"))
 async def close_app(message: types.Message):
     await message.answer(f"socrobotic.io - удобный интернет-магазин FB аккаунтов",
+                         reply_markup=types.ReplyKeyboardRemove())
+
+
+@dp.message_handler(Text(contains="about"))
+async def close_app(message: types.Message):
+    url_lst = [
+        "https://protraffic.com/articles/socrobotic-farmbot-36612.html",
+        "https://madcpa.ru/obzor-magazina-akkauntov-facebook-ot-socrobotic/",
+        "https://madcpa.ru/obzor-programmy-dlya-registratsii-i-farminga-akkauntov-fb-socrobotic-fb/",
+        "https://reachup.ru/magazin-akkauntov-fb-ot-socrobotic/",
+        "https://reachup.ru/socrobotic/",
+        "https://affy.group/obzor-magazina-kachestvennyh-farm-akkauntov-facebook-socrobotic-io/",
+    ]
+    url = random.choice(url_lst)
+    await message.answer(f"Лучше всего описано <a href='{url}'>в этой статье</>",
                          reply_markup=types.ReplyKeyboardRemove())
 
 
